@@ -1,4 +1,6 @@
 using EdgarTaveras_Ap1_P1.Components;
+using EdgarTaveras_Ap1_P1.DAL;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+//Getting Connection String
+var ConStr = builder.Configuration.GetConnectionString("ConStr");
+//Injecting Connection String
+builder.Services.AddDbContext<Contexto>(options => options.UseSqlite(ConStr));
+//Injecting Service to the Program
+
+
+
+
+
+// arriba de esto !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
